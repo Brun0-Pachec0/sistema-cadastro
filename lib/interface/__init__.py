@@ -2,7 +2,7 @@ def val_idade(msg):
     while True:
         dado1 = str(input(f'{msg}'))
         if dado1.isnumeric():
-            return dado1
+            return int(dado1)
         else:
             print('Opção inválida!')
 
@@ -18,6 +18,7 @@ def titulomenu(msg):
 
 def programa_principal():
     from time import sleep
+    from datetime import date
     geral = list()
     dados = dict()
     arq = 'pessoasCadastradas.txt'
@@ -39,8 +40,27 @@ def programa_principal():
             # Opção 2 para cadastrar uma nova pessoa
             titulo('NOVO CADASTRO')
             nome = str(input('Nome:')).capitalize().strip()
-            idade = val_idade('Idade:')
             sexo = str(input('Sexo [M/F]:')).upper().strip()
+            # data nascimento
+            diaNasc = val_idade('Dia de nascimento:')
+            mesNasc = val_idade('Mês de nascimento:')
+            anoNasc = val_idade('Ano de nascimento:')
+            
+            # data atual
+            dataAtual = date.today()
+            diaAtual = dataAtual.day
+            mesAtual = dataAtual.month
+            anoAtual = dataAtual.year
+
+            # verificando se ele já fez aniversário, ou não
+            if mesAtual > mesNasc:
+                idade = anoAtual - anoNasc
+            elif mesAtual == mesNasc and diaAtual >= diaNasc:
+                idade = anoAtual - anoNasc
+            else:
+                idade = anoAtual - anoNasc -1
+
+
             while True:
                 if sexo == 'M' or sexo == 'F':
                     break
