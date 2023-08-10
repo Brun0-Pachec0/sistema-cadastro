@@ -11,6 +11,10 @@ def titulo(msg):
     print(f'{msg}'.center(40))
     print(20 * '--')
 
+def titulomenu(msg):
+    print(30 * '--')
+    print(f'{msg}'.center(40))
+    print(30 * '--')
 
 def programa_principal():
     from time import sleep
@@ -36,7 +40,13 @@ def programa_principal():
             titulo('NOVO CADASTRO')
             nome = str(input('Nome:')).capitalize().strip()
             idade = val_idade('Idade:')
-            cadastrar(arq, nome, idade)
+            sexo = str(input('Sexo [M/F]:')).upper().strip()
+            while True:
+                if sexo == 'M' or sexo == 'F':
+                    break
+                else:
+                    sexo = str(input('Informe um sexo válido! \nSexo [M/F]:')).upper().strip()
+            cadastrar(arq, nome, idade, sexo)
         elif escolha == 1:
             # Opção 1 para mostrar todas as pessoas cadastradas
             lerarquivo('pessoasCadastradas.txt')

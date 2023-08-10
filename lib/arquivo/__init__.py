@@ -27,23 +27,23 @@ def lerarquivo(nome):
     except:
         print('Erro ao ler o arquivo!')
     else:
-        titulo('PESSOAS CADASTRADAS')
+        titulomenu('PESSOAS CADASTRADAS')
         for linha in a:
             dado = linha.split(';')
             dado[1] = dado[1].replace('\n', '')
-            print(f'{dado[0]:<30} \t{dado[1]:>3} anos')
+            print(f'{dado[0]:<30} \t{dado[1]:>3} anos \t Sexo: {dado[2]:>2}')
     finally:
         a.close()
 
 
-def cadastrar(arq, nome='desconhecido', idade=0):
+def cadastrar(arq, nome='desconhecido', idade=0, sexo='indeterminado'):
     try:
         a = open(arq, 'at')
     except:
         print('Houve um erro na abertura do arquivo ')
     else:
         try:
-            a.write(f'{nome};{idade}\n')
+            a.write(f'{nome};{idade};{sexo}\n')
         except:
             print(f'Houve um erro na hora de escrever os dados!')
         else:

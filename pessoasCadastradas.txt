@@ -1,1 +1,2 @@
-Bruno;21
+Bruno;21;M
+Rodrigo;26;M
